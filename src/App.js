@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 // components
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -31,6 +31,9 @@ function App() {
     setSpeed(e.target.value)
   }
 
+  // Board state and helpers
+  const generations = useRef(0)
+
   return (
     <>
       <StyledContent>
@@ -43,7 +46,12 @@ function App() {
           speed={speed}
           updateSpeed={updateSpeed}
         />
-        <Board startStop={startStop} size={size} speed={speed} />
+        <Board
+          startStop={startStop}
+          size={size}
+          speed={speed}
+          generations={generations}
+        />
       </StyledContent>
       <Footer />
     </>
