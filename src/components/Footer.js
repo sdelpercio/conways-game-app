@@ -3,12 +3,19 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledFooter = styled.div`
-  width: 60%;
+  width: 800px;
   flex-shrink: 0;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 768px) {
+    width: 400px;
+  }
+  @media (max-width: 425px) {
+    width: 300px;
+  }
 `
 
 function Footer() {

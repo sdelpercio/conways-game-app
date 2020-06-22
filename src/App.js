@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 // components
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -13,12 +13,37 @@ const StyledContent = styled.div`
 `
 
 function App() {
+  // Controls state and helpers
+  const [startStop, setStartStop] = useState(false)
+  const [size, setSize] = useState(25)
+  const [speed, setSpeed] = useState(1000)
+
+  const toggleStartStop = (e) => {
+    e.preventDefault()
+    setStartStop(!startStop)
+  }
+  const updateSize = (e) => {
+    e.preventDefault()
+    setSize(e.target.value)
+  }
+  const updateSpeed = (e) => {
+    e.preventDefault()
+    setSpeed(e.target.value)
+  }
+
   return (
     <>
       <StyledContent>
         <Header />
-        <Controls />
-        <Board />
+        <Controls
+          startStop={startStop}
+          toggleStartStop={toggleStartStop}
+          size={size}
+          updateSize={updateSize}
+          speed={speed}
+          updateSpeed={updateSpeed}
+        />
+        <Board startStop={startStop} size={size} speed={speed} />
       </StyledContent>
       <Footer />
     </>
