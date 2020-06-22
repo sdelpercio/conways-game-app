@@ -1,19 +1,28 @@
-import React from 'react';
+import React from 'react'
 // components
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Controls from './components/Controls'
 import Board from './components/Board'
+// styles
+import styled from 'styled-components'
+
+const StyledContent = styled.div`
+  flex: 1 0 auto;
+  padding: 20px;
+`
 
 function App() {
   return (
-    <div>
-      <Header />
-      <Controls />
-      <Board />
+    <>
+      <StyledContent>
+        <Header />
+        <Controls />
+        <Board />
+      </StyledContent>
       <Footer />
-    </div>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App
