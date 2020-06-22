@@ -1,11 +1,22 @@
-import React from 'react';
+import React from 'react'
+// styles
+// import styled from 'styled-components'
 
-function Cell() {
+// const StyledCell = styled.div`
+//   width: ${size}
+// `
+
+function Cell({ status, size }) {
   return (
-    <div>
-      <div>Cell</div>
-    </div>
-  );
+    <div
+      style={{
+        width: `${size}px`,
+        height: `${size}px`,
+        border: '1px solid black',
+        backgroundColor: status ? 'black' : 'white',
+      }}
+    ></div>
+  )
 }
 
-export default Cell;
+export default Cell
