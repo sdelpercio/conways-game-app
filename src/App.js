@@ -9,7 +9,6 @@ import styled from 'styled-components'
 
 const StyledContent = styled.div`
   flex: 1 0 auto;
-  padding: 20px;
 `
 
 function App() {
