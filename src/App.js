@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 // components
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Controls from './components/Controls'
 import Board from './components/Board'
+// helpers
+import { grid25, grid50, grid75, grid100 } from './helpers/initalGameBoards'
 // styles
 import styled from 'styled-components'
 
@@ -31,7 +33,37 @@ function App() {
   }
 
   // Board state and helpers
-  const generations = useRef(0)
+  const generations = useState(0)
+
+  // Initialize current and next game boards
+  const intSize = parseInt(size)
+  let [grid, setGrid] = useState(grid25)
+  let nextGrid = grid
+
+  // handle grid size
+  useEffect(() => {
+    if (intSize === 25) {
+      setGrid(grid25)
+    }
+    if (intSize === 50) {
+      setGrid(grid50)
+    }
+    if (intSize === 75) {
+      setGrid(grid75)
+    }
+    if (intSize === 100) {
+      setGrid(grid100)
+    }
+  }, [intSize])
+
+  // toggle alive helper
+  const toggleLife = (e) => {
+    if (e.target.className === 'alive') {
+      e.target.className = 'dead'
+    } else {
+      e.target.className = 'alive'
+    }
+  }
 
   return (
     <>
@@ -46,10 +78,11 @@ function App() {
           updateSpeed={updateSpeed}
         />
         <Board
+          grid={grid}
           startStop={startStop}
-          size={size}
-          speed={speed}
+          size={intSize}
           generations={generations}
+          toggleLife={toggleLife}
         />
       </StyledContent>
       <Footer />
