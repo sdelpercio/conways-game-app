@@ -17,7 +17,7 @@ const StyledBoard = styled.div`
 function Board({ grid, startStop, size, generations, toggleLife }) {
   return (
     <StyledBoard>
-      <h3>Generations: {generations.current}</h3>
+      <h3>Generations: {generations}</h3>
       <div style={gridDisplay(size)}>
         {grid.map((cell, index) => (
           <div

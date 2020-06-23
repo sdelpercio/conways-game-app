@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 // components
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -6,6 +6,7 @@ import Controls from './components/Controls'
 import Board from './components/Board'
 // helpers
 import { grid25, grid50, grid75, grid100 } from './helpers/initalGameBoards'
+import { useInterval } from './helpers/useInterval'
 // styles
 import styled from 'styled-components'
 
@@ -17,6 +18,7 @@ function App() {
   // Controls state and helpers
   const [startStop, setStartStop] = useState(false)
   const [size, setSize] = useState(25)
+  const intSize = parseInt(size)
   const [speed, setSpeed] = useState(1000)
 
   const toggleStartStop = (e) => {
@@ -33,27 +35,25 @@ function App() {
   }
 
   // Board state and helpers
-  const generations = useState(0)
+  const [generations, setGenerations] = useState(0)
+  const [grid, setGrid] = useState(grid25)
+  let nextGrid = useRef(grid)
 
-  // Initialize current and next game boards
-  const intSize = parseInt(size)
-  let [grid, setGrid] = useState(grid25)
-  let nextGrid = grid
-
-  // handle grid size
+  // handle grid size change
   useEffect(() => {
     if (intSize === 25) {
-      setGrid(grid25)
+      nextGrid.current = grid25
     }
     if (intSize === 50) {
-      setGrid(grid50)
+      nextGrid.current = grid50
     }
     if (intSize === 75) {
-      setGrid(grid75)
+      nextGrid.current = grid75
     }
     if (intSize === 100) {
-      setGrid(grid100)
+      nextGrid.current = grid100
     }
+    setGrid(nextGrid.current)
   }, [intSize])
 
   // toggle alive helper
@@ -64,6 +64,12 @@ function App() {
       e.target.className = 'alive'
     }
   }
+
+  // handle lifecycle
+  // while startStop is true
+  // set interval, interval repeats depending on speed
+  // call the simulate function to update nextGrid
+  // set grid to nextGrid
 
   return (
     <>
