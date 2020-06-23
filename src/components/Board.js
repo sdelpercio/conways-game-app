@@ -58,12 +58,12 @@ function Board({ startStop, size, speed, generations }) {
   }, [width])
 
   // TODO: onclick event to toggle array value
-  // const toggleStatus = (e) => {
-  //   e.preventDefault()
-  //   const row = e.target.rowKey
-  //   const cell = e.target.key
-  //   setBoard()
-  // }
+  const toggleStatus = (e, row, cell) => {
+    e.preventDefault()
+    console.log('row', row)
+    console.log('cell', cell)
+    board.current[row][cell] = !board.current[row][cell]
+  }
 
   return (
     <StyledBoard>
@@ -74,9 +74,11 @@ function Board({ startStop, size, speed, generations }) {
             {row.map((cell, cellIndex) => (
               <Cell
                 key={cellIndex}
+                cellKey={cellIndex}
                 rowKey={rowIndex}
                 status={cell}
-                size={Math.round(maxWidth / intSize)}
+                size={maxWidth / intSize}
+                toggleStatus={toggleStatus}
               />
             ))}
           </BoardRow>

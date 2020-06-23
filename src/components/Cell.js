@@ -6,12 +6,13 @@ import React from 'react'
 //   width: ${size}
 // `
 
-function Cell({ status, size }) {
+function Cell({ key, cellKey, rowKey, status, size, toggleStatus }) {
   return (
     <div
+      onClick={(e) => toggleStatus(e, rowKey, cellKey)}
       style={{
         width: `${size}px`,
-        height: `${size}px`,
+        height: `${size - 5}px`,
         border: '1px solid black',
         backgroundColor: status ? 'black' : 'white',
       }}
