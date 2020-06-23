@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import useWindowSize from '../hooks/useWindowSize'
 // styles
 import styled from 'styled-components'
 import Cell from './Cell'
 
 const StyledBoard = styled.div`
-  margin: 5% auto;
+  margin: 2% auto;
   text-align: center;
   width: 800px;
 
@@ -29,16 +29,22 @@ const BoardRow = styled.div`
 
 function Board({ startStop, size, speed, generations }) {
   // Initialize game board
+  const intSize = parseInt(size)
   let board = useRef(
-    new Array(size).fill(false).map(() => new Array(size).fill(false))
+    new Array(intSize).fill(false).map(() => new Array(intSize).fill(false))
   )
+  const [nextBoard, setNextBoard] = useState(board.current)
+  // change size of board
   useEffect(() => {
-    board.current = new Array(size)
+    board.current = new Array(intSize)
       .fill(false)
-      .map(() => new Array(size).fill(false))
-  }, [size])
+      .map(() => new Array(intSize).fill(false))
 
-  // size helper
+    setNextBoard(board.current)
+    console.log('board', board)
+  }, [intSize])
+
+  // cell size helper
   const [width] = useWindowSize()
   const [maxWidth, setMaxWidth] = useState(300)
   useEffect(() => {
@@ -51,19 +57,30 @@ function Board({ startStop, size, speed, generations }) {
     }
   }, [width])
 
+  // TODO: onclick event to toggle array value
+  // const toggleStatus = (e) => {
+  //   e.preventDefault()
+  //   const row = e.target.rowKey
+  //   const cell = e.target.key
+  //   setBoard()
+  // }
+
   return (
     <StyledBoard>
       <h3>Generations: {generations.current}</h3>
       <BoardBackground>
-        {board.current
-          ? board.current.map((row) => (
-              <BoardRow>
-                {row.map((cell) => (
-                  <Cell status={cell} size={maxWidth / size} />
-                ))}
-              </BoardRow>
-            ))
-          : null}
+        {nextBoard.map((row, rowIndex) => (
+          <BoardRow key={rowIndex}>
+            {row.map((cell, cellIndex) => (
+              <Cell
+                key={cellIndex}
+                rowKey={rowIndex}
+                status={cell}
+                size={Math.round(maxWidth / intSize)}
+              />
+            ))}
+          </BoardRow>
+        ))}
       </BoardBackground>
     </StyledBoard>
   )
