@@ -4,7 +4,9 @@ import { GiSprout } from 'react-icons/gi'
 import styled from 'styled-components'
 
 const StyledHeader = styled.div`
-  width: 100%;
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 2%;
   border-bottom: 1px solid grey;
   display: flex;
   justify-content: center;
