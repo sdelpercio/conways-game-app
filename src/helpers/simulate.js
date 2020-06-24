@@ -10,19 +10,20 @@ export const checkAlive = (cell, index, grid, size) => {
   // top left
   if (column === 1 && row === 1) {
     // south
-    if (grid[index + 1].alive) {
+    if (grid[index + size].alive) {
       aliveNeighbors++
     }
     // east
-    if (grid[index + size].alive) {
+    if (grid[index + 1].alive) {
       aliveNeighbors++
     }
     // southeast
     if (grid[index + size + 1].alive) {
       aliveNeighbors++
     }
+
     // check conditions
-    if (alive === true && aliveNeighbors >= 2) {
+    if (alive === true && (aliveNeighbors === 2 || aliveNeighbors === 3)) {
       return true
     } else if (alive === false && aliveNeighbors === 3) {
       return true
@@ -34,19 +35,19 @@ export const checkAlive = (cell, index, grid, size) => {
   // bottom left
   else if (column === 1 && row === size) {
     // north
-    if (grid[index - 1].alive) {
+    if (grid[index - size].alive) {
       aliveNeighbors++
     }
     // east
-    if (grid[index + size].alive) {
+    if (grid[index + 1].alive) {
       aliveNeighbors++
     }
     // northeast
-    if (grid[index + size - 1].alive) {
+    if (grid[index - size + 1].alive) {
       aliveNeighbors++
     }
     // check conditions
-    if (alive === true && aliveNeighbors >= 2) {
+    if (alive === true && (aliveNeighbors === 2 || aliveNeighbors === 3)) {
       return true
     } else if (alive === false && aliveNeighbors === 3) {
       return true
@@ -58,19 +59,19 @@ export const checkAlive = (cell, index, grid, size) => {
   // top right
   else if (column === size && row === 1) {
     // south
-    if (grid[index + 1].alive) {
+    if (grid[index + size].alive) {
       aliveNeighbors++
     }
     // southwest
-    if (grid[index - size + 1].alive) {
+    if (grid[index + size - 1].alive) {
       aliveNeighbors++
     }
     // west
-    if (grid[index - size].alive) {
+    if (grid[index - 1].alive) {
       aliveNeighbors++
     }
     // check conditions
-    if (alive === true && aliveNeighbors >= 2) {
+    if (alive === true && (aliveNeighbors === 2 || aliveNeighbors === 3)) {
       return true
     } else if (alive === false && aliveNeighbors === 3) {
       return true
@@ -82,11 +83,11 @@ export const checkAlive = (cell, index, grid, size) => {
   // bottom right
   else if (column === size && row === size) {
     // north
-    if (grid[index - 1].alive) {
+    if (grid[index - size].alive) {
       aliveNeighbors++
     }
     // west
-    if (grid[index - size].alive) {
+    if (grid[index - 1].alive) {
       aliveNeighbors++
     }
     // northwest
@@ -94,7 +95,7 @@ export const checkAlive = (cell, index, grid, size) => {
       aliveNeighbors++
     }
     // check conditions
-    if (alive === true && aliveNeighbors >= 2) {
+    if (alive === true && (aliveNeighbors === 2 || aliveNeighbors === 3)) {
       return true
     } else if (alive === false && aliveNeighbors === 3) {
       return true
@@ -106,27 +107,27 @@ export const checkAlive = (cell, index, grid, size) => {
   // top row
   else if (row === 1) {
     // west
-    if (grid[index - size].alive) {
+    if (grid[index - 1].alive) {
       aliveNeighbors++
     }
     // southwest
-    if (grid[index - size + 1].alive) {
-      aliveNeighbors++
-    }
-    // south
-    if (grid[index + 1].alive) {
-      aliveNeighbors++
-    }
-    // southeast
     if (grid[index + size - 1].alive) {
       aliveNeighbors++
     }
-    // east
+    // south
     if (grid[index + size].alive) {
       aliveNeighbors++
     }
+    // southeast
+    if (grid[index + size + 1].alive) {
+      aliveNeighbors++
+    }
+    // east
+    if (grid[index + 1].alive) {
+      aliveNeighbors++
+    }
     // check conditions
-    if (alive === true && aliveNeighbors >= 2) {
+    if (alive === true && (aliveNeighbors === 2 || aliveNeighbors === 3)) {
       return true
     } else if (alive === false && aliveNeighbors === 3) {
       return true
@@ -138,15 +139,15 @@ export const checkAlive = (cell, index, grid, size) => {
   // left column
   else if (column === 1) {
     // north
-    if (grid[index - 1].alive) {
+    if (grid[index - size].alive) {
       aliveNeighbors++
     }
     // northeast
-    if (grid[index + size - 1].alive) {
+    if (grid[index - size + 1].alive) {
       aliveNeighbors++
     }
     // east
-    if (grid[index + size].alive) {
+    if (grid[index + 1].alive) {
       aliveNeighbors++
     }
     // southeast
@@ -154,11 +155,11 @@ export const checkAlive = (cell, index, grid, size) => {
       aliveNeighbors++
     }
     // south
-    if (grid[index + 1].alive) {
+    if (grid[index + size].alive) {
       aliveNeighbors++
     }
     // check conditions
-    if (alive === true && aliveNeighbors >= 2) {
+    if (alive === true && (aliveNeighbors === 2 || aliveNeighbors === 3)) {
       return true
     } else if (alive === false && aliveNeighbors === 3) {
       return true
@@ -170,7 +171,7 @@ export const checkAlive = (cell, index, grid, size) => {
   // bottom row
   else if (row === size) {
     // west
-    if (grid[index - size].alive) {
+    if (grid[index - 1].alive) {
       aliveNeighbors++
     }
     // northwest
@@ -178,19 +179,19 @@ export const checkAlive = (cell, index, grid, size) => {
       aliveNeighbors++
     }
     // north
-    if (grid[index - 1].alive) {
+    if (grid[index - size].alive) {
       aliveNeighbors++
     }
     // northeast
-    if (grid[index + size - 1].alive) {
+    if (grid[index - size + 1].alive) {
       aliveNeighbors++
     }
     // east
-    if (grid[index + size].alive) {
+    if (grid[index + 1].alive) {
       aliveNeighbors++
     }
     // check conditions
-    if (alive === true && aliveNeighbors >= 2) {
+    if (alive === true && (aliveNeighbors === 2 || aliveNeighbors === 3)) {
       return true
     } else if (alive === false && aliveNeighbors === 3) {
       return true
@@ -202,7 +203,7 @@ export const checkAlive = (cell, index, grid, size) => {
   // right column
   else if (column === size) {
     // north
-    if (grid[index - 1].alive) {
+    if (grid[index - size].alive) {
       aliveNeighbors++
     }
     // northwest
@@ -210,19 +211,19 @@ export const checkAlive = (cell, index, grid, size) => {
       aliveNeighbors++
     }
     // west
-    if (grid[index - size].alive) {
+    if (grid[index - 1].alive) {
       aliveNeighbors++
     }
     // southwest
-    if (grid[index - size + 1].alive) {
+    if (grid[index + size - 1].alive) {
       aliveNeighbors++
     }
     // south
-    if (grid[index + 1].alive) {
+    if (grid[index + size].alive) {
       aliveNeighbors++
     }
     // check conditions
-    if (alive === true && aliveNeighbors >= 2) {
+    if (alive === true && (aliveNeighbors === 2 || aliveNeighbors === 3)) {
       return true
     } else if (alive === false && aliveNeighbors === 3) {
       return true
@@ -234,15 +235,15 @@ export const checkAlive = (cell, index, grid, size) => {
   // middle
   else {
     // north
-    if (grid[index - 1].alive) {
+    if (grid[index - size].alive) {
       aliveNeighbors++
     }
     // northeast
-    if (grid[index + size - 1].alive) {
+    if (grid[index - size + 1].alive) {
       aliveNeighbors++
     }
     // east
-    if (grid[index + size].alive) {
+    if (grid[index + 1].alive) {
       aliveNeighbors++
     }
     // southeast
@@ -250,15 +251,15 @@ export const checkAlive = (cell, index, grid, size) => {
       aliveNeighbors++
     }
     // south
-    if (grid[index + 1].alive) {
+    if (grid[index + size].alive) {
       aliveNeighbors++
     }
     // southwest
-    if (grid[index - size + 1].alive) {
+    if (grid[index + size - 1].alive) {
       aliveNeighbors++
     }
     // west
-    if (grid[index - size].alive) {
+    if (grid[index - 1].alive) {
       aliveNeighbors++
     }
     // northwest
@@ -266,7 +267,7 @@ export const checkAlive = (cell, index, grid, size) => {
       aliveNeighbors++
     }
     // check conditions
-    if (alive === true && aliveNeighbors >= 2) {
+    if (alive === true && (aliveNeighbors === 2 || aliveNeighbors === 3)) {
       return true
     } else if (alive === false && aliveNeighbors === 3) {
       return true
@@ -280,12 +281,16 @@ export const checkAlive = (cell, index, grid, size) => {
 // take in the nextGrid ref to do changes
 export const simulateAutomata = (grid, size) => {
   // loop through nextGrid
+  const newStatuses = []
   grid.forEach((cell, index) => {
     if (checkAlive(cell, index, grid, size)) {
-      cell.alive = true
+      newStatuses.push(true)
     } else {
-      cell.alive = false
+      newStatuses.push(false)
     }
+  })
+  newStatuses.forEach((bool, index) => {
+    grid[index].alive = bool
   })
 
   return grid

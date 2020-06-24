@@ -84,7 +84,7 @@ function App() {
     () => {
       const changedGrid = simulateAutomata(nextGrid.current, intSize)
       setGrid([...changedGrid])
-      setGenerations((generations) => generations++)
+      setGenerations(generations + 1)
     },
     startStop ? intSpeed : null
   )

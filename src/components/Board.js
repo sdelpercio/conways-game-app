@@ -30,7 +30,6 @@ function Board({ grid, startStop, size, generations, toggleLife }) {
                     toggleLife(e, index)
                   }
             }
-            // alive={cell.alive}
             style={cellDisplay(cell.alive, size)}
           />
         ))}
