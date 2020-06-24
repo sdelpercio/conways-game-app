@@ -8,7 +8,6 @@ for (let i = 0; i < 25; i++) {
       column: i + 1,
       row: j + 1,
       alive: false,
-      clickable: false,
       id: counter,
     })
   }
@@ -25,7 +24,6 @@ for (let i = 0; i < 50; i++) {
       column: i + 1,
       row: j + 1,
       alive: false,
-      clickable: false,
       id: counter,
     })
   }
@@ -42,7 +40,6 @@ for (let i = 0; i < 75; i++) {
       column: i + 1,
       row: j + 1,
       alive: false,
-      clickable: false,
       id: counter,
     })
   }
@@ -59,7 +56,6 @@ for (let i = 0; i < 100; i++) {
       column: i + 1,
       row: j + 1,
       alive: false,
-      clickable: false,
       id: counter,
     })
   }
