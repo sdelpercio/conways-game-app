@@ -23,8 +23,14 @@ function Board({ grid, startStop, size, generations, toggleLife }) {
           <div
             key={index}
             className={cell.alive ? 'alive' : 'dead'}
-            onClick={startStop ? null : toggleLife}
-            alive={cell.alive}
+            onClick={
+              startStop
+                ? null
+                : (e) => {
+                    toggleLife(e, index)
+                  }
+            }
+            // alive={cell.alive}
             style={cellDisplay(cell.alive, size)}
           />
         ))}

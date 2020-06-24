@@ -3,10 +3,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyledControls = styled.div`
-  width: 800px;
+  width: 600px;
   margin: 5% auto 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 
   @media (max-width: 768px) {
     width: 400px;
@@ -19,6 +19,7 @@ const StyledControls = styled.div`
 function Controls({
   startStop,
   toggleStartStop,
+  clearGrid,
   size,
   updateSize,
   speed,
@@ -27,7 +28,8 @@ function Controls({
   return (
     <StyledControls>
       <button onClick={toggleStartStop}>{startStop ? 'Stop' : 'Start'}</button>
-      <div style={{ margin: '0 20px' }}>
+      <button onClick={clearGrid}>Clear</button>
+      <div>
         <label htmlFor='size'>Select a size</label>
         <select name='size' value={size} onChange={updateSize}>
           <option value={25}>25 x 25</option>
@@ -41,8 +43,9 @@ function Controls({
         <select name='speed' value={speed} onChange={updateSpeed}>
           <option value={1000}>1</option>
           <option value={500}>2</option>
+          <option value={333}>3</option>
+          <option value={250}>4</option>
           <option value={200}>5</option>
-          <option value={100}>10</option>
         </select>
       </div>
     </StyledControls>
