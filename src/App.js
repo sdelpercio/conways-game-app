@@ -37,11 +37,28 @@ function App() {
   }
   const clearGrid = (e) => {
     e.preventDefault()
-    setGenerations(0)
-    nextGrid.current.forEach((cell) => {
-      cell.alive = false
-    })
-    setGrid([...nextGrid.current])
+    if (startStop) {
+      return
+    } else {
+      setGenerations(0)
+      nextGrid.current.forEach((cell) => {
+        cell.alive = false
+      })
+      setGrid([...nextGrid.current])
+    }
+  }
+  const randomizeGrid = (e) => {
+    e.preventDefault()
+    if (startStop) {
+      return
+    } else {
+      setGenerations(0)
+      nextGrid.current.forEach((cell) => {
+        const random_boolean = Math.random() >= 0.8
+        cell.alive = random_boolean
+      })
+      setGrid([...nextGrid.current])
+    }
   }
 
   // Board state and helpers
@@ -97,6 +114,7 @@ function App() {
           startStop={startStop}
           toggleStartStop={toggleStartStop}
           clearGrid={clearGrid}
+          randomizeGrid={randomizeGrid}
           size={size}
           updateSize={updateSize}
           speed={speed}
