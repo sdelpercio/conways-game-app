@@ -2,10 +2,10 @@ import React from 'react'
 // styles
 import styled from 'styled-components'
 
-const StyledFooter = styled.div`
-  width: 600px;
+const StyledInfo = styled.div`
+  width: 350px;
+  padding-left: 50px;
   flex-shrink: 0;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -23,9 +23,9 @@ const StyledP = styled.p`
   text-indent: 5rem;
 `
 
-function Footer() {
+function Info() {
   return (
-    <StyledFooter>
+    <StyledInfo>
       <StyledH3>A little about Conway's Game of Life...</StyledH3>
       <StyledP>
         Motivated by questions in mathematical logic and in part by work on
@@ -43,8 +43,8 @@ function Footer() {
           </li>
         </ol>
       </StyledP>
-    </StyledFooter>
+    </StyledInfo>
   )
 }
 
-export default Footer
+export default Info

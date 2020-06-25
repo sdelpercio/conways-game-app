@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 // components
 import Header from './components/Header'
-import Footer from './components/Footer'
 import Controls from './components/Controls'
 import Board from './components/Board'
 // helpers
@@ -128,7 +127,6 @@ function App() {
           toggleLife={toggleLife}
         />
       </StyledContent>
-      <Footer />
     </>
   )
 }
