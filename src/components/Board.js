@@ -8,7 +8,7 @@ import { cellDisplay } from '../helpers/cellDisplay'
 import styled from 'styled-components'
 
 const StyledContainer = styled.div`
-  width: 1000px;
+  width: 1100px;
   margin: 2% auto;
   display: flex;
   justify-content: center;
