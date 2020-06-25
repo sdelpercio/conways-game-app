@@ -84,8 +84,9 @@ const StyledButton = styled.button`
 const StyledSelect = styled.select`
   width: 120px;
   height: 40px;
-  border: 2px solid green;
-  border-radius: 10px;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid green;
   background: white;
   color: black;
   font-family: 'Roboto', sans-serif;
