@@ -1,4 +1,7 @@
-# Conway's Game of Life by Shawn DelPercio
+# Conway's Game of Life
+By Shawn DelPercio
+
+Deployed on [Vercel](https://conway-sd.vercel.app/)
 
 ## Description
 
