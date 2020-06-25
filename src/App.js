@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 // components
 import Header from './components/Header'
-import Footer from './components/Footer'
 import Controls from './components/Controls'
 import Board from './components/Board'
 // helpers
@@ -37,11 +36,28 @@ function App() {
   }
   const clearGrid = (e) => {
     e.preventDefault()
-    setGenerations(0)
-    nextGrid.current.forEach((cell) => {
-      cell.alive = false
-    })
-    setGrid([...nextGrid.current])
+    if (startStop) {
+      return
+    } else {
+      setGenerations(0)
+      nextGrid.current.forEach((cell) => {
+        cell.alive = false
+      })
+      setGrid([...nextGrid.current])
+    }
+  }
+  const randomizeGrid = (e) => {
+    e.preventDefault()
+    if (startStop) {
+      return
+    } else {
+      setGenerations(0)
+      nextGrid.current.forEach((cell) => {
+        const random_boolean = Math.random() >= 0.8
+        cell.alive = random_boolean
+      })
+      setGrid([...nextGrid.current])
+    }
   }
 
   // Board state and helpers
@@ -97,6 +113,7 @@ function App() {
           startStop={startStop}
           toggleStartStop={toggleStartStop}
           clearGrid={clearGrid}
+          randomizeGrid={randomizeGrid}
           size={size}
           updateSize={updateSize}
           speed={speed}
@@ -110,7 +127,6 @@ function App() {
           toggleLife={toggleLife}
         />
       </StyledContent>
-      <Footer />
     </>
   )
 }
